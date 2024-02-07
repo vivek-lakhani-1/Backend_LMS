@@ -1,10 +1,21 @@
 from django.db import models
 
-from django.db import models
+
+
+
+
+class User_Credentials(models.Model):
+    User_Id = models.BigAutoField(primary_key=True)
+    User_Name = models.CharField(max_length=255)
+    User_Email = models.EmailField()
+    User_Password = models.TextField()
+    def __str__(self):
+        return self.User_Name
+
 
 # Create your models here.
 class User_Registration(models.Model):
-    User_Id = models.IntegerField()
+    User_Id = models.OneToOneField(User_Credentials, on_delete=models.CASCADE)
     Organization_Name = models.CharField(max_length=100)
     Date_Of_Registration = models.DateField()
     Full_Name = models.CharField(max_length=50)
